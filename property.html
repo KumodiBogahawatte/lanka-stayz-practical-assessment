@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Property details and booking request for a Lanka Stayz accommodation."
+    />
+    <title>Stay details — Lanka Stayz</title>
+    <link rel="icon" href="assets/images/mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/js/data.js" defer></script>
+    <script src="assets/js/components/site-shell.js" defer></script>
+    <script src="assets/js/app.js" defer></script>
+  </head>
+  <body data-page="property">
+    <lanka-site-header page="property"></lanka-site-header>
+    <main
+      class="section detail-page"
+      id="main-content"
+      data-property-detail
+      tabindex="-1"
+    >
+      <p class="loading-message">Finding your stay…</p>
+    </main>
+    <lanka-site-footer></lanka-site-footer>
+    <dialog
+      class="lightbox"
+      id="photo-lightbox"
+      aria-label="Property photo viewer"
+    >
+      <button
+        class="lightbox-close"
+        type="button"
+        aria-label="Close photo viewer"
+      >
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i></button
+      ><button
+        class="lightbox-arrow lightbox-previous"
+        type="button"
+        aria-label="Previous photo"
+      >
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <figure>
+        <img id="lightbox-image" alt="" />
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+      <button
+        class="lightbox-arrow lightbox-next"
+        type="button"
+        aria-label="Next photo"
+      >
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </dialog>
+  </body>
+</html>
