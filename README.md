@@ -1,59 +1,63 @@
 # Lanka Stayz
 
-A responsive, multi-page accommodation-booking prototype for exploring sample stays across Sri Lanka and sending a demo booking request.
+Lanka Stayz is a responsive, multi-page accommodation website prototype for exploring sample stays around Sri Lanka and submitting a demo booking request. I built it with plain HTML, CSS, and JavaScript so it can be run and hosted without a build step.
+
+- **Live website:** [kumodibogahawatte.github.io/lanka-stayz-practical-assessment](https://kumodibogahawatte.github.io/lanka-stayz-practical-assessment/)
+- **Source repository:** [github.com/KumodiBogahawatte/lanka-stayz-practical-assessment](https://github.com/KumodiBogahawatte/lanka-stayz-practical-assessment)
+
+## Project introduction
+
+The site is a browsing and booking-request demo, not a production reservation service. It has separate pages for exploring stays, viewing property details, and sending sample booking or contact requests.
 
 ## Pages and project structure
 
-- `index.html` — homepage, search form, and featured sample properties
-- `stays.html` — filterable accommodation listings
-- `property.html?id=galle-fort-house` — property details and booking link
-- `booking.html?property=galle-fort-house` — validated booking request form
-- `about.html` and `contact.html` — separate informational pages
-- `assets/css/styles.css` — shared responsive styles
-- `assets/js/data.js` — sample accommodation data
-- `assets/js/components/site-shell.js` — shared, reusable navigation and footer components
-- `assets/js/app.js` — shared navigation, listing, detail and form behavior
-- `assets/images/` — local brand mark and responsive, locally stored Sri Lankan destination and accommodation photographs
-- `DEVELOPMENT_SUMMARY.md` — implementation approach, prototype limitations, interview walkthrough, and next steps
+- `index.html` contains the homepage, featured stays, and destination, date, and guest search.
+- `stays.html` displays the sample properties and provides destination and guest-capacity filters, price sorting, and pagination.
+- `property.html?id=galle-fort-house` uses the selected property's ID to show its details, photos, amenities, and booking form.
+- `booking.html?property=galle-fort-house` contains the booking request form and its demo confirmation.
+- `about.html` and `contact.html` provide the About Us and Contact pages.
+- `assets/css/styles.css` contains the shared styles and responsive layouts.
+- `assets/js/data.js` holds the sample property data.
+- `assets/js/components/site-shell.js` defines the shared header and footer Web Components and adds the shared font and icon stylesheets.
+- `assets/js/app.js` handles the page-specific search, listing, gallery, date, and form behavior.
+- `assets/images/` contains the logo mark and locally stored images at responsive sizes.
+- `DEVELOPMENT_SUMMARY.md` describes the implementation and provides an interview walkthrough.
 
-## Run locally
+## How to run locally
 
-No build step, framework, or dependency install is needed. Open `index.html` in a browser, or start a static server from the project directory:
+There is no package installation or build step. From the project directory, start Python's built-in static server:
 
 ```sh
 python -m http.server 8000
 ```
 
-Then open `http://localhost:8000`. Serving over HTTP is recommended for testing and mirrors a static host more closely than opening files directly.
+Open [http://localhost:8000](http://localhost:8000) in a browser. Serving the files over HTTP is a closer match to static hosting than opening the HTML files directly.
 
-## Deploy as a live demo
+## Technologies used
 
-This is a static website and requires no build command. A GitHub Pages workflow is included at `.github/workflows/pages.yml`. Push the project to the `main` branch of a GitHub repository, enable **Settings → Pages → Source → GitHub Actions**, and the workflow publishes the site on each push. The Actions run will show the public URL when deployment completes. The same files can also be uploaded to Netlify or another static host.
+The site uses semantic HTML, CSS, and vanilla JavaScript. I used browser-native Web Components for the shared header and footer, and standard browser features such as `URLSearchParams`, `IntersectionObserver`, and the HTML dialog element for page behavior. Google Fonts and Font Awesome provide typography and icons; they are loaded from their respective external services. GitHub Actions deploys the static files to GitHub Pages.
 
-Publishing requires a GitHub repository and permission to enable Pages; neither is configured in this workspace. Keep the relative page links and `assets/` directory together when uploading.
+## Main features
 
-## Technologies and functionality
+The homepage has an accommodation photo slider and a custom search form with destination, calendar, and guest pickers. A search sends the selected values to the stays page. The listing page filters by destination and minimum guest capacity, sorts by price, and shows up to six properties per page. Dates travel through the property and booking links, but are not used to check availability.
 
-- Semantic HTML, CSS, and vanilla JavaScript
-- Responsive navigation and page layouts for desktop, tablet, and mobile
-- Homepage hero slider with timed rotation and previous/next controls, featuring Sri Lankan accommodation
-- Listing cards and property galleries featuring real Sri Lankan accommodation photos as representative references, not photos of the fictional sample listings
-- Custom destination, calendar, and guest pickers; search requires a destination or a complete date range
-- Destination and guest-capacity filtering, price sorting, and six-stay pagination
-- Separate property detail pages with three photos, amenities, capacity, check-in/out guidance, and nightly price
-- Night-based stay-total estimates on the property and booking pages
-- Booking form required-field, email, date-order, and property guest-capacity validation
-- Contact form with clear demo confirmation
-- Property-photo lightbox with zoom presentation, previous/next controls, and keyboard arrows
-- Clearly marked illustrative guest reviews and nearby-place distance information on the Galle property page
-- Font Awesome icons, larger readable typography, subtle entrance and scroll animations, and shared contact details in every page footer
-- Shared Google Fonts and Font Awesome stylesheet links are registered centrally by `site-shell.js`, rather than repeated in each page
+Each property card links to a detail view selected by its ID. The detail page shows the property's sample description, nightly LKR price, capacity, amenities, and three representative photos. The gallery opens in a lightbox with previous/next buttons and keyboard navigation. The Galle example also has illustrative reviews and nearby-place information.
 
-## Prototype limitations and development summary
+The booking form carries over dates and guest count when provided, lets the visitor edit them, checks required details and date order, and enforces the property's guest limit. It displays a local confirmation after valid submission. The contact form also validates its fields and displays a demo response. Neither form sends or stores information.
 
-Accommodation listings, contact details, reviews, and their details are fictional. The accommodation photos show real hotels and guest houses in Sri Lanka, but are representative reference images and do not depict the named sample properties; visible labels, alt text, and lightbox captions make this clear. All photographic images are local JPEG files in `assets/images/`, with 960- and 1280-pixel responsive variants; images are served without a third-party image request. Web fonts and Font Awesome still load from their external providers. Booking and contact submissions are front-end demonstrations: no data is sent or saved, and the confirmation is not a real booking or sent message. Live availability, reservation storage, accounts, and payment processing are not implemented.
+## Prototype limitations
 
-### Wikimedia Commons destination photo credits
+The properties, descriptions, contact details, guest reviews, ratings, and nearby-place information are sample content. The photographs show real Sri Lankan hotels, guest houses, destinations, and landmarks, but are representative reference images; they do not necessarily depict the fictional sample properties. Labels, alt text, and gallery captions make this clear.
+
+There is no backend, live availability, reservation storage, user account, email delivery, or payment processing. A successful form submission is only a browser-side demonstration: it is not a confirmed booking or a sent message. The photo files are stored locally, while the Google Fonts and Font Awesome stylesheets require external network access.
+
+AI assistance was used during development to help scaffold and refine parts of the prototype. I am responsible for reviewing the final implementation and its claims.
+
+## Image sources and attribution
+
+All photo credits below refer to Wikimedia Commons source pages. The local 960- and 1280-pixel JPEGs are resized versions of those images. Please retain the attribution and comply with each image's license when reusing the files. Share-alike terms apply to images distributed under CC BY-SA.
+
+### Destination and landmark photographs
 
 - Galle Fort — [Madhawa Dunuwila](https://commons.wikimedia.org/wiki/File:Galle_Dutch_Fort,_Sri_Lanka.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 - Nine Arch Bridge, Ella — [Janith Pramuditha](https://commons.wikimedia.org/wiki/File:Nine_arch_Sri_Lanka.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -66,9 +70,9 @@ Accommodation listings, contact details, reviews, and their details are fictiona
 - Trincomalee — [Jan Kranendonk](https://commons.wikimedia.org/wiki/File:Fort_TrincomaleeTrincomaleeFort--.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 - Sigiriya — [Shamilapathirana](https://commons.wikimedia.org/wiki/File:Lion_rock_Sri_Lanka.jpg), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-Destination and landmark photos are used for editorial and page-header imagery. The homepage hero, accommodation listing cards, and property galleries use local photos of Sri Lankan hotels and guest houses.
+Destination and landmark images appear in editorial sections and page headers. The homepage hero and property cards and galleries use photographs of Sri Lankan accommodation.
 
-### Wikimedia Commons accommodation photo credits
+### Accommodation photographs
 
 - `hotel-room-212` — [psychoslave](https://commons.wikimedia.org/wiki/File:Hotel_room_Sri_Lanka_Photo212.jpg), hotel room photographed in Sri Lanka in 2014; [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 - `hotel-room-213` — [psychoslave](https://commons.wikimedia.org/wiki/File:Hotel_room_Sri_Lanka_Photo213.jpg), hotel room photographed in Sri Lanka in 2014; [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -81,6 +85,10 @@ Destination and landmark photos are used for editorial and page-header imagery. 
 - `mannar-guest-house` — [Adam Jones](https://commons.wikimedia.org/wiki/File:Facade_of_Mannar_Guest_House_at_Sunset_-_Mannar_-_Sri_Lanka.jpg), facade of Mannar Guest House; [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/)
 - `mihipiya-guest-house` — [sanjaya madushan -ha…](https://commons.wikimedia.org/wiki/File:Mihipiya_guest_house-_habarana_0094662270090_AC_NON_AC_ROOMS_-_panoramio.jpg), Mihipiya Guest House in Habarana; [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 
-Each cited Commons file page is the source and provides the author's attribution and license terms. The local 960- and 1280-pixel JPEG variants are resized Commons thumbnails of those source images. Share-alike terms apply to images distributed under CC BY-SA.
+Each Commons file page is the source for its attribution and license terms.
 
-The site uses shared header/footer web components, one property-data module, and page-specific behavior without a build tool. AI assistance was used to scaffold this prototype. Before production, replace the demonstration contact details and fictional guest reviews with verified business information and consented guest content. A commercial version would add a verified catalogue, backend booking and availability services, secure contact handling, authentication where needed, payment-provider integration, and automated accessibility and browser testing.
+## Deployment using GitHub Pages
+
+The site is deployed at [kumodibogahawatte.github.io/lanka-stayz-practical-assessment](https://kumodibogahawatte.github.io/lanka-stayz-practical-assessment/). The source is in the [GitHub repository](https://github.com/KumodiBogahawatte/lanka-stayz-practical-assessment).
+
+The [Pages workflow](.github/workflows/pages.yml) publishes the project root to GitHub Pages when a commit is pushed to `main`. It can also be started manually with `workflow_dispatch`. There is no build command: the workflow checks out the files, uploads them as a Pages artifact, and deploys that artifact. Local changes appear on the live site only after they have been pushed and the deployment workflow has completed successfully. Keep the HTML pages and `assets/` directory together so the relative links continue to work.
